@@ -53,28 +53,35 @@
 
       <!-- Main Content -->
       <div id="main_content" class="w-2/3 mt-20 flex flex-col mx-auto text-yellow-800" >
-        <h2 class="text-4xl text-bold text-black mb-8">Cookie Orders</h2>
-        <h3 class="mb-2">All Orders</h3>
-        <table class=" border-2 border-b-8 border-black rounded-lg text-center text-white">
-          <thead >
-            <tr class="bg-black">
-              <th class="p-4">Customer Name</th>
-              <th class="p-4">Cookie Type</th>
-              <th class="p-4">Number of Boxes</th>
-              <th class="p-4">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for order in orders%}
-              <tr class="bg-yellow-900 hover:bg-yellow-800">
-                <td class="p-4">{{order.name}}</td>
-                <td class="p-4">{{ order.cookie_type }}</td>
-                <td class="p-4">{{ order.num_of_boxes }}</td>
-                <td class="p-4"><a href="/order/{{order.id}}" class="underline hover:text-blue-400">edit</a></td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <h2 class="text-4xl text-bold text-black mb-8">Log a New Order</h2>
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action="/cookies/new/order" method="post" class="border-2 border-black flex flex-col items-center space-y-4 p-6 pt-16 w-1/2 text-lg text-semibold overflow-hidden bg-cover bg-no-repeat" style="background-image: url('{{ url_for('static', filename='images/cookie_grid.jpg') }}'); height: 300px">
+            <div>
+                <label for="name" class="text-white">Name:</label>
+                <input type="text" name="name" id="name" placeholder="Kevin Malone" class="pl-1">
+            </div>
+            <div>
+                <label for="cookie" class="text-white">Cookie Type:</label>
+                <select name="cookie_type" id="cookie">
+                    <option value="Thin Mints">Thin Mints</option>
+                    <option value="Girl Scout S'mores">Girl Scout S'mores</option>
+                    <option value="Samoas">Samoas</option>
+                    <option value="Tagalongs ">Tagalongs</option>
+                    <option value="Do-si-dos">Do-si-dos</option>
+                </select>
+            </div>
+            <div>
+                <label for="box_num" class="text-white">Number of Boxes:</label>
+                <input type="number" name="num_of_boxes" id="box_num" value="100" class="pl-1">
+            </div>
+            <button type="submit" class=" bg-emerald-500 border border-black px-4 py-2 transition duration-50 font-semibold hover:bg-emerald-300 text-white text-xl cursor-pointer mt-8 w-2/5">Order</button>
+        </form>
       </div>
     </div>
   </div>

@@ -5,31 +5,32 @@
 }
 
 .sidebar {
-    width: 1/6;
+    width: 12%;
     min-height: 100vh;
-    transition: transform 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
     background-position: center center;
     background-image: url('../images/thin_mints.jpeg');
-  }
-
-.sidebar a {
-    display: block;
 }
 
-
-  .sidebar-hidden {
+.sidebar-hidden {
     transform: translateX(-100%);
     width: 0;
     opacity: 0;
     visibility: hidden;
-  }
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+  .sidebar a {
+    display: block;
+}
+
 
   .main-content {
-    width: 5/6;
     transition: width 0.3s;
   }
 
   .main-content-full {
-    width: full;
+    width: 100%;
     margin-left: 0;
   }
+

@@ -16,34 +16,16 @@ CREATE SCHEMA IF NOT EXISTS `cookies_schema` DEFAULT CHARACTER SET utf8 ;
 USE `cookies_schema` ;
 
 -- -----------------------------------------------------
--- Table `cookies_schema`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cookies_schema`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `created_at` DATETIME NULL DEFAULT NOW(),
-  `updated_at` DATETIME NULL DEFAULT NOW() ON UPDATE NOW(),
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `cookies_schema`.`orders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cookies_schema`.`orders` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
   `cookie_type` VARCHAR(45) NOT NULL,
   `num_of_boxes` TINYINT NOT NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
-  `update_at` DATETIME NULL DEFAULT NOW() ON UPDATE NOW(),
-  PRIMARY KEY (`id`),
-  INDEX `fk_orders_users_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_orders_users`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `cookies_schema`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  `updated_at` DATETIME NULL DEFAULT NOW() ON UPDATE NOW(),
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
